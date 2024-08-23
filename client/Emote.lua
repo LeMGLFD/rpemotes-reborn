@@ -999,7 +999,7 @@ if not LocalPlayer.state.canEmote then return end
         for k, vv in pairs(v) do
             if vv == EmoteName then
                 table.insert(EmoteName, k)
-                break -- break thread when v == EmoteName for prevent crash 
+                break -- break thread when vv == EmoteName for prevent crash 
             end
         end
     end
