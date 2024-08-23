@@ -28,6 +28,7 @@ CurrentAnimationName = nil
 CurrentTextureVariation = nil
 InHandsup = false
 CurrentExportEmote = nil
+local currentPlayedAnimTable = {}
 
 -- Remove emotes if needed
 
@@ -459,6 +460,7 @@ function EmoteCancel(force)
     end
     AnimationThreadStatus = false
     CheckStatus = false
+    currentPlayedAnimTable = {}
 end
 
 --#region ptfx
@@ -993,6 +995,16 @@ if not LocalPlayer.state.canEmote then return end
             TriggerServerEvent("rpemotes:ptfx:syncProp", ObjToNet(prop))
         end
     end
+    for _, v  in pairs(RP) do
+        for k, vv in pairs(v) do
+            if vv == EmoteName then
+                table.insert(EmoteName, k)
+                break -- break thread when v == EmoteName for prevent crash 
+            end
+        end
+    end
+    currentPlayedAnimTable = EmoteName
+    print("DebugPrint("..json.encode(currentPlayedAnimTable))
 end
 
 
